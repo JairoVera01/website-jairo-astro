@@ -13,7 +13,11 @@ const { align = "center", tagline } = Astro.props;
       Hola mi nombre es <span class="name-title">Jairo Vera</span>
     </h1>
     <!-- Añadir efecto maquina de escribir (freelancer, ingeniero de sistemas, frontend) -->
-    {tagline && <p class="tagline">{tagline}</p>}
+    <!-- {tagline && <p class="tagline">{tagline}</p>} -->
+    <div class="containerty">
+      <span class="typed-text fw-bold tagline"></span><span class="cursor"
+      ></span>&nbsp
+    </div>
   </div>
   <slot />
 </header>
@@ -59,3 +63,67 @@ const { align = "center", tagline } = Astro.props;
     }
   }
 </style>
+<script>
+  // Efecto maquina de escribir
+  const typedTextSpan = document.querySelector<HTMLSpanElement>(".typed-text");
+  const cursorSpan = document.querySelector<HTMLSpanElement>(".cursor");
+
+  const textArray: string[] = [
+    "Desarrollador web",
+    "Freelancer",
+    "Ingeniero de sistemas",
+    "Frontend",
+  ];
+  const typingDelay: number = 100;
+  const erasingDelay: number = 100;
+  const newTextDelay: number = 1000; // Delay between current and next text
+  let textArrayIndex: number = 0;
+  let charIndex: number = 0;
+
+  function type() {
+    if (charIndex < textArray[textArrayIndex].length) {
+      if (cursorSpan && !cursorSpan.classList.contains("typing")) {
+        cursorSpan.classList.add("typing");
+      }
+      if (typedTextSpan) {
+        typedTextSpan.textContent +=
+          textArray[textArrayIndex].charAt(charIndex);
+      }
+      charIndex++;
+      setTimeout(type, typingDelay);
+    } else {
+      if (cursorSpan) {
+        cursorSpan.classList.remove("typing");
+      }
+      setTimeout(erase, newTextDelay);
+    }
+  }
+
+  function erase() {
+    if (charIndex > 0) {
+      if (cursorSpan && !cursorSpan.classList.contains("typing")) {
+        cursorSpan.classList.add("typing");
+      }
+      if (typedTextSpan) {
+        typedTextSpan.textContent = textArray[textArrayIndex].substring(
+          0,
+          charIndex - 1
+        );
+      }
+      charIndex--;
+      setTimeout(erase, erasingDelay);
+    } else {
+      if (cursorSpan) {
+        cursorSpan.classList.remove("typing");
+      }
+      textArrayIndex++;
+      if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+      setTimeout(type, typingDelay + 1100);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // On DOM Load initiate the effect
+    if (textArray.length) setTimeout(type, newTextDelay + 250);
+  });
+</script>

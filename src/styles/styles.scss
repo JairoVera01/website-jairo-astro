@@ -8,7 +8,38 @@
 html {
   scroll-behavior: smooth;
 }
-
+//Typing texty
+.containerty h1 span.typed-text {
+  font-weight: normal;
+  color: black;
+}
+.containerty h1 span.cursor {
+  display: inline-block;
+  background-color: black;
+  margin-left: 0.1rem;
+  width: 2.5px;
+  animation: blink 1s infinite;
+}
+.containerty h1 span.cursor.typing {
+  animation: none;
+}
+@keyframes blink {
+  0% {
+    background-color: black;
+  }
+  49% {
+    background-color: black;
+  }
+  50% {
+    background-color: transparent;
+  }
+  99% {
+    background-color: black;
+  }
+  100% {
+    background-color: black;
+  }
+}
 /* Global variables */
 :root {
   /* Colors */
