@@ -1,0 +1,19 @@
+---
+import Icon from "./Icon.astro";
+const currentYear = new Date().getFullYear();
+---
+
+<footer>
+  <div class="group">
+    <p>
+      Diseñado y Desarrollado con <a href="https://astro.build/">Astro</a>
+      <Icon icon="rocket-launch" size="1.2em" />
+    </p>
+    <p>&copy; {currentYear} Frank Jairo Vera Chamorro</p>
+  </div>
+  <p class="socials">
+    <a href="https://twitter.com/me"> Twitter</a>
+    <a href="https://github.com/me"> GitHub</a>
+    <a href="https://codepen.io/me"> CodePen</a>
+  </p>
+</footer>
