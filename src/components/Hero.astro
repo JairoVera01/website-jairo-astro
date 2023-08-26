@@ -10,7 +10,7 @@ const { align = "center", tagline } = Astro.props;
 <header class:list={["hero stack gap-8", align]}>
   <div class="stack gap-8">
     <h1 class="title">
-      Hola mi nombre es <span class="name-title">Jairo Vera</span>
+      Hola, soy<br /><span class="name-title">Jairo Vera</span>
     </h1>
     <!-- Añadir efecto maquina de escribir (freelancer, ingeniero de sistemas, frontend) -->
     <!-- {tagline && <p class="tagline">{tagline}</p>} -->
@@ -60,6 +60,37 @@ const { align = "center", tagline } = Astro.props;
 
     .title {
       font-size: var(--text-5xl);
+    }
+  }
+
+  .containerty h1 span.typed-text {
+    font-weight: normal;
+  }
+  .containerty h1 span.cursor {
+    display: inline-block;
+    background-color: red;
+    margin-left: 0.1rem;
+    width: 4px;
+    animation: blink 1s infinite;
+  }
+  .containerty h1 span.cursor.typing {
+    animation: none;
+  }
+  @keyframes blink {
+    0% {
+      background-color: red;
+    }
+    49% {
+      background-color: red;
+    }
+    50% {
+      background-color: transparent;
+    }
+    99% {
+      background-color: red;
+    }
+    100% {
+      background-color: red;
     }
   }
 </style>
