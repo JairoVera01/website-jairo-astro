@@ -15,8 +15,10 @@ const { align = "center", tagline } = Astro.props;
     <!-- Añadir efecto maquina de escribir (freelancer, ingeniero de sistemas, frontend) -->
     <!-- {tagline && <p class="tagline">{tagline}</p>} -->
     <div class="containerty">
-      <span class="typed-text fw-bold tagline"></span><span class="cursor"
-      ></span>&nbsp
+      <p>
+        <span class="typed-text fw-bold tagline"></span><span class="cursor"
+        ></span>&nbsp
+      </p>
     </div>
   </div>
   <slot />
@@ -63,34 +65,42 @@ const { align = "center", tagline } = Astro.props;
     }
   }
 
-  .containerty h1 span.typed-text {
-    font-weight: normal;
+  .containerty p span.typed-text {
+    font-weight: 500;
+    font-size: var(--text-xl);
+    color: var(--gray-0);
   }
-  .containerty h1 span.cursor {
+  @media (min-width: 992px) {
+    .containerty p span.typed-text {
+      font-size: var(--text-2xl);
+    }
+  }
+  .containerty p span.cursor {
     display: inline-block;
-    background-color: red;
+    background-color: black;
     margin-left: 0.1rem;
     width: 4px;
+    height: 100%;
     animation: blink 1s infinite;
   }
-  .containerty h1 span.cursor.typing {
+  .containerty p span.cursor.typing {
     animation: none;
   }
   @keyframes blink {
     0% {
-      background-color: red;
+      background-color: black;
     }
     49% {
-      background-color: red;
+      background-color: black;
     }
     50% {
       background-color: transparent;
     }
     99% {
-      background-color: red;
+      background-color: transparent;
     }
     100% {
-      background-color: red;
+      background-color: black;
     }
   }
 </style>
